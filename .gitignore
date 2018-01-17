@@ -1,0 +1,5 @@
+/vendor/
+/logs/
+/Tests/coverage/
+/Tests/logs/
+coverage.xml

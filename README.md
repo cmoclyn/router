@@ -1,9 +1,11 @@
-# Router for PHP
+# Router for PHP 7
 
 ## Documentation
 ---------------
 
-There is 2 versions of this Router, one for PHP 7 (branch master-7) and one for PHP 5.6 (branch master-5.6)
+[![Build Status](https://travis-ci.org/cmoclyn/router.svg?branch=master-7)](https://travis-ci.org/cmoclyn/router)
+[![codecov](https://codecov.io/gh/cmoclyn/router/branch/master-7/graph/badge.svg)](https://codecov.io/gh/cmoclyn/router)
+
 
 ### .htaccess example
 ```htaccess
