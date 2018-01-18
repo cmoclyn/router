@@ -4,7 +4,6 @@ namespace Router;
 
 use Router\Exceptions\RouteException;
 use Doctrine\Common\Annotations\{AnnotationReader, FileCacheReader};
-use Annotations\{Route, Parameter, Authorization};
 
 /**
  * Class RouteHandler
