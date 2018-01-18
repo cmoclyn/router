@@ -3,3 +3,4 @@
 /Tests/coverage/
 /Tests/logs/
 coverage.xml
+/src/cache/
