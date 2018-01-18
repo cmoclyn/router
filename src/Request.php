@@ -3,6 +3,8 @@
 namespace Router;
 
 use Logguer\Log;
+use Router\Security\User;
+
 
 class Request{
   private $route;
@@ -11,7 +13,7 @@ class Request{
   private $get = array();
   private $file = array();
 
-  public function __construct(Route $route, UserInterface $user){
+  public function __construct(Route $route, User $user){
     $this->route = $route;
     $this->user = $user;
   }
