@@ -124,7 +124,7 @@ class Route{
       throw new SecurityException("The User '{$user->getUsername()}' doesn`t have the rights to execute the Route '{$this->name}'");
     }
     // TODO Return a request ready to use
-    return call_user_func_array(array(new $this->controller, $this->method), $params);
+    call_user_func_array(array(new $this->controller, $this->method), $params);
   }
 
   /**

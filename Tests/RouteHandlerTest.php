@@ -12,7 +12,6 @@ class RouteHandlerTest extends TestCase{
 
 
   /**
-   * @covers Router\RouteHandler::__construct
    * @covers Router\RouteHandler::checkNotEmpty
    * @covers Router\RouteHandler::findRouteByName
    * @covers Router\Exceptions\RouteException::__construct
@@ -29,7 +28,6 @@ class RouteHandlerTest extends TestCase{
 
   /**
    * @dataProvider providerForFindByNameOk
-   * @covers Router\RouteHandler::__construct
    * @covers Router\RouteHandler::addRoute
    * @covers Router\RouteHandler::checkNotEmpty
    * @covers Router\RouteHandler::findRouteByName
@@ -45,7 +43,6 @@ class RouteHandlerTest extends TestCase{
 
   /**
    * @dataProvider providerForFindByNameFail
-   * @covers Router\RouteHandler::__construct
    * @covers Router\RouteHandler::addRoute
    * @covers Router\RouteHandler::checkNotEmpty
    * @covers Router\RouteHandler::findRouteByName
@@ -65,7 +62,6 @@ class RouteHandlerTest extends TestCase{
 
   /**
    * @dataProvider providerForFindByPatternOk
-   * @covers Router\RouteHandler::__construct
    * @covers Router\RouteHandler::addRoute
    * @covers Router\RouteHandler::checkNotEmpty
    * @covers Router\RouteHandler::findRouteByPattern
@@ -81,7 +77,6 @@ class RouteHandlerTest extends TestCase{
 
   /**
    * @dataProvider providerForFindByPatternFail
-   * @covers Router\RouteHandler::__construct
    * @covers Router\RouteHandler::addRoute
    * @covers Router\RouteHandler::checkNotEmpty
    * @covers Router\RouteHandler::findRouteByPattern
