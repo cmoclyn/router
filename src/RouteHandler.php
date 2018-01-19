@@ -25,8 +25,20 @@ class RouteHandler{
    */
   private $directories = array();
 
+  /**
+   * The cache directory
+   */
+  private $cacheDirectory = __DIR__.'/cache';
 
 
+  /**
+  * Set the value of Cache Directory
+  *
+  * @param string cacheDirectory
+  */
+  public function setCacheDirectory($cacheDirectory):string{
+    $this->cacheDirectory = $cacheDirectory;
+  }
 
   /**
    * Add a directory in which we will find Route
@@ -50,7 +62,7 @@ class RouteHandler{
   public function findRoutes():void{
     $reader = new FileCacheReader(
       new AnnotationReader(),
-      __DIR__."/cache",
+      $this->cache,
       $debug = true
     );
 
@@ -138,4 +150,5 @@ class RouteHandler{
       throw new RouteException("", RouteException::NO_ROUTES);
     }
   }
+
 }
