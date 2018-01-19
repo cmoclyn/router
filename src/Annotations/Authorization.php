@@ -1,6 +1,6 @@
 <?php
 
-namespace Annotations;
+namespace Router\Annotations;
 
 /**
  * @Annotation

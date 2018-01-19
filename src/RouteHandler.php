@@ -82,11 +82,11 @@ class RouteHandler{
         $reflClass = new \ReflectionClass($class);
         foreach($reflClass->getMethods() as $method){
           foreach($reader->getMethodAnnotations($method) as $annot){
-            if(is_a($annot, 'Annotations\Route')){
+            if(is_a($annot, 'Router\Annotations\Route')){
               $route = new \Router\Route($annot->name, $annot->pattern, $method->class, $method->name);
-            }elseif(is_a($annot, 'Annotations\Parameter')){
+            }elseif(is_a($annot, 'Router\Annotations\Parameter')){
               $route->addParameter($annot);
-            }elseif(is_a($annot, 'Annotations\Authorization')){
+            }elseif(is_a($annot, 'Router\Annotations\Authorization')){
               $route->addAuthorization($annot);
             }
           }

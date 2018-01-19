@@ -2,7 +2,7 @@
 
 namespace Router;
 
-use Annotations\{Parameter, Authorization};
+use Router\Annotations\{Parameter, Authorization};
 use Router\Security\User;
 use Router\Exceptions\SecurityException;
 
