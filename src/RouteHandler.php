@@ -62,7 +62,7 @@ class RouteHandler{
   public function findRoutes():void{
     $reader = new FileCacheReader(
       new AnnotationReader(),
-      $this->cache,
+      $this->cacheDirectory,
       $debug = true
     );
 
