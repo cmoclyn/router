@@ -32,7 +32,7 @@ class RouteHandlerTest extends TestCase{
    */
   public function testFindRoutes(){
 
-    AnnotationRegistry::registerAutoloadNamespace("Router", dirname(__DIR__).'/src');
+    AnnotationRegistry::registerAutoloadNamespace("Router\Annotations", dirname(__DIR__).'/src');
     $handler = new RouteHandler();
     $handler->addControllersDirectory(__DIR__.'/Controllers');
     try{

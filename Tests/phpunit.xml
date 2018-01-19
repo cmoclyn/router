@@ -9,10 +9,10 @@
   <filter>
     <whitelist>
       <!-- lib subfolders to include -->
-      <directory>../src/RouteHandler.php</directory>
-      <directory>../src/Route.php</directory>
-      <directory>../src/Request.php</directory>
-      <directory>../src/Exceptions/</directory>
+      <directory>../src/Router/RouteHandler.php</directory>
+      <directory>../src/Router/Route.php</directory>
+      <directory>../src/Router/Request.php</directory>
+      <directory>../src/Router/Exceptions/</directory>
     </whitelist>
   </filter>
 

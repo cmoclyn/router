@@ -2,7 +2,7 @@
 
 namespace Tests\Controllers;
 
-use Router\Annotations\{Route, Parameter, Authorization};
+use \Router\Annotations\{Route, Parameter, Authorization};
 
 class ControllerExample{
 
