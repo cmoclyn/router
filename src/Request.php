@@ -38,6 +38,11 @@ class Request{
   }
 
 
+  public function execute(array $params):void{
+    $controller = $this->route->getController();
+    call_user_func_array(array(new $controller, $this->route->getMethod()), $params);
+  }
+
   public function __toString():string{
     $log = new Log();
     $log->setClass('Router\Request');

@@ -107,7 +107,7 @@ class RouteHandler{
     $this->checkNotEmpty();
     foreach($this->routes as $route){
       if(preg_match($route->getPattern(), $pattern)){
-        return $route; // TODO Return a request ready to use
+        return $route;
       }
     }
     throw new RouteException("No route find by pattern '$pattern'", RouteException::NO_ROUTE_FOUND);
@@ -124,7 +124,7 @@ class RouteHandler{
     $this->checkNotEmpty();
     foreach($this->routes as $route){
       if($route->getName() == $name){
-        return $route; // TODO Return a request ready to use
+        return $route;
       }
     }
     throw new RouteException("No route find by name '$name'", RouteException::NO_ROUTE_FOUND);

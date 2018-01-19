@@ -4,7 +4,7 @@ namespace Router;
 
 use Annotations\{Parameter, Authorization};
 use Router\Security\User;
-use Exceptions\SecurityException;
+use Router\Exceptions\SecurityException;
 
 /**
  * Class Route
@@ -117,14 +117,14 @@ class Route{
    * Execute the Route for the given User
    *
    * @param  User   $user   User to execute the Route with
-   * @param  array  $params The parameters to pass to method
+   *
+   * @return Request
    */
-  public function call(User $user, array $params):void{
+  public function call(User $user):Request{
     if(!$this->checkAuthorization($user)){
-      throw new SecurityException("The User '{$user->getUsername()}' doesn`t have the rights to execute the Route '{$this->name}'");
+      throw new SecurityException("The User '{$user->getUsername()}' doesn`t have the rights to execute the Route '{$this->name}'", SecurityException::UNAUTHORIZED);
     }
-    // TODO Return a request ready to use
-    call_user_func_array(array(new $this->controller, $this->method), $params);
+    return new Request($this, $user);
   }
 
   /**
@@ -146,12 +146,21 @@ class Route{
   }
 
   /**
-   * Get the value of Args
+   * Get the value of Controller
    *
-   * @return array
+   * @return mixed
    */
-  public function getArgs():array{
-    return $this->args;
+  public function getController(){
+    return $this->controller;
+  }
+
+  /**
+   * Get the value of Method
+   *
+   * @return mixed
+   */
+  public function getMethod(){
+    return $this->method;
   }
 
 }

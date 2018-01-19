@@ -7,9 +7,76 @@ use PHPUnit\Framework\TestCase;
 use Router\RouteHandler;
 use Router\Route;
 use Router\Exceptions\RouteException;
+use Router\Exceptions\SecurityException;
+use Doctrine\Common\Annotations\{AnnotationReader, FileCacheReader, AnnotationRegistry};
+
+require_once 'Controllers/ControllerExample.php';
 
 class RouteHandlerTest extends TestCase{
 
+
+  /**
+   * @covers Router\RouteHandler::addControllersDirectory
+   * @covers Router\RouteHandler::findRoutes
+   * @covers Router\Route::__construct
+   * @covers Router\Route::addAuthorization
+   * @covers Router\Route::addParameter
+   * @covers Router\Route::checkAuthorization
+   * @covers Router\Route::call
+   * @covers Router\Route::getController
+   * @covers Router\Route::getMethod
+   * @covers Router\Exceptions\RouteException::__construct
+   * @covers Router\Exceptions\SecurityException::__construct
+   * @covers Router\Request::__construct
+   * @covers Router\Request::execute
+   */
+  public function testFindRoutes(){
+
+    AnnotationRegistry::registerAutoloadNamespace("Annotations", dirname(__DIR__).'/src');
+    $handler = new RouteHandler();
+    $handler->addControllersDirectory(__DIR__.'/Controllers');
+    try{
+      $handler->addControllersDirectory(__FILE__);
+    }catch(RouteException $e){
+      $this->assertInstanceOf(RouteException::class, $e);
+    }
+    $handler->findRoutes();
+
+    $route = $handler->findRouteByName('route');
+
+    $user = new Class implements \Router\Security\User{
+      public function getUsername():string{ return 'username'; }
+      public function isConnected():bool{ return true; }
+      public function hasRole(string $role):bool{ return true; }
+      public function hasRight(string $right):bool{ return true; }
+    };
+    $request = $route->call($user);
+    $request->execute(array(1));
+
+    $user2 = new Class implements \Router\Security\User{
+      public function getUsername():string{ return 'username'; }
+      public function isConnected():bool{ return false; }
+      public function hasRole(string $role):bool{ return true; }
+      public function hasRight(string $right):bool{ return true; }
+    };
+    try{
+      $route->call($user2, array());
+    }catch(SecurityException $e){
+      $this->assertInstanceOf(SecurityException::class, $e);
+    }
+
+    $user3 = new Class implements \Router\Security\User{
+      public function getUsername():string{ return 'username'; }
+      public function isConnected():bool{ return true; }
+      public function hasRole(string $role):bool{ return false; }
+      public function hasRight(string $right):bool{ return true; }
+    };
+    try{
+      $route->call($user3, array());
+    }catch(SecurityException $e){
+      $this->assertInstanceOf(SecurityException::class, $e);
+    }
+  }
 
   /**
    * @covers Router\RouteHandler::checkNotEmpty
