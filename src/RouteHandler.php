@@ -36,7 +36,7 @@ class RouteHandler{
   *
   * @param string cacheDirectory
   */
-  public function setCacheDirectory($cacheDirectory):string{
+  public function setCacheDirectory($cacheDirectory){
     $this->cacheDirectory = $cacheDirectory;
   }
 
